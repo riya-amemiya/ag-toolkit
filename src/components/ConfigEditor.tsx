@@ -97,7 +97,7 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 
 	const handleSelect = (selected: { value: keyof T }) => {
 		const item = configItems.find((i) => i.key === selected.value);
-		if (!config || !item) {
+		if (!(config && item)) {
 			return;
 		}
 		setEditingItem(item);
@@ -126,7 +126,9 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 	};
 
 	const commitEditing = () => {
-		if (!config || !editingItem) return;
+		if (!(config && editingItem)) {
+			return;
+		}
 
 		const { key, type } = editingItem;
 		let nextValue: unknown;
@@ -168,7 +170,9 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 
 	useInput(
 		(input, key) => {
-			if (status !== "editing" || !editingItem) return;
+			if (status !== "editing" || !editingItem) {
+				return;
+			}
 
 			if (key.escape) {
 				cancelEditing();
@@ -218,7 +222,9 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 	};
 
 	const renderEditor = () => {
-		if (!editingItem) return null;
+		if (!editingItem) {
+			return null;
+		}
 
 		switch (editingItem.type) {
 			case "boolean":
@@ -253,9 +259,12 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 			case "number":
 			case "array": {
 				let prompt = "Enter a string";
-				if (editingItem.type === "number") prompt = "Enter a number (>= 0)";
-				if (editingItem.type === "array")
+				if (editingItem.type === "number") {
+					prompt = "Enter a number (>= 0)";
+				}
+				if (editingItem.type === "array") {
 					prompt = "Enter comma-separated values";
+				}
 				return (
 					<Box flexDirection="column">
 						<Text>{prompt} (leave empty to unset):</Text>

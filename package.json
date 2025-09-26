@@ -1,5 +1,5 @@
 {
-	"name": "ag-utils",
+	"name": "ag-core",
 	"version": "0.1.0",
 	"description": "Shared library for agbd and agrb",
 	"license": "MIT",
@@ -8,11 +8,11 @@
 	"types": "dist/index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/riya-amemiya/ag-utils.git"
+		"url": "git+https://github.com/riya-amemiya/ag-core.git"
 	},
-	"homepage": "https://github.com/riya-amemiya/ag-utils#readme",
+	"homepage": "https://github.com/riya-amemiya/ag-core#readme",
 	"bugs": {
-		"url": "https://github.com/riya-amemiya/ag-utils/issues"
+		"url": "https://github.com/riya-amemiya/ag-core/issues"
 	},
 	"exports": {
 		".": "./dist/index.js"
