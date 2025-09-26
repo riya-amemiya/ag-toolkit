@@ -1,12 +1,19 @@
 {
 	"name": "aglib",
 	"version": "0.1.0",
-	"private": true,
 	"description": "Shared library for agbd and agrb",
 	"license": "MIT",
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/riya-amemiya/aglib.git"
+	},
+	"homepage": "https://github.com/riya-amemiya/aglib#readme",
+	"bugs": {
+		"url": "https://github.com/riya-amemiya/aglib/issues"
+	},
 	"exports": {
 		".": "./dist/index.js"
 	},
@@ -20,6 +27,9 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"dependencies": {
 		"ink": "6.3.1",
 		"ink-select-input": "6.2.0",
