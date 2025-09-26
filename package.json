@@ -1,5 +1,5 @@
 {
-	"name": "ag-core",
+	"name": "ag-toolkit",
 	"version": "0.1.0",
 	"description": "Shared library for agbd and agrb",
 	"license": "MIT",
@@ -8,11 +8,11 @@
 	"types": "dist/index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/riya-amemiya/ag-core.git"
+		"url": "git+https://github.com/riya-amemiya/ag-toolkit.git"
 	},
-	"homepage": "https://github.com/riya-amemiya/ag-core#readme",
+	"homepage": "https://github.com/riya-amemiya/ag-toolkit#readme",
 	"bugs": {
-		"url": "https://github.com/riya-amemiya/ag-core/issues"
+		"url": "https://github.com/riya-amemiya/ag-toolkit/issues"
 	},
 	"exports": {
 		".": "./dist/index.js"
