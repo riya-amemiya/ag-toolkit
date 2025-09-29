@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 
-export const useSearchFilter = <
-	T extends Record<string, string | number | boolean | null | undefined>,
->(
+export const useSearchFilter = <T extends Record<string, unknown>>(
 	items: T[],
 	searchTerm: string,
 	searchableFields: (keyof T)[],
