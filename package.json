@@ -1,6 +1,6 @@
 {
 	"name": "ag-toolkit",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Shared library for agbd and agrb",
 	"license": "MIT",
 	"type": "module",
@@ -22,7 +22,8 @@
 		"dev": "tsc --watch",
 		"test": "biome check .",
 		"lint": "biome check . --write",
-		"ci": "biome ci ."
+		"ci": "biome ci .",
+		"prepublishOnly": "npm run build"
 	},
 	"files": [
 		"dist"
