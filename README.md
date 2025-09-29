@@ -1,6 +1,6 @@
 # aglib
 
-`aglib` is a library that provides shared functionality for the `agbd` and `agrb` CLI tools.
+`aglib` is a library that provides shared functionality for the [agbd](https://github.com/riya-amemiya/agbd) and [agrb](https://github.com/riya-amemiya/agrb) CLI tools.
 
 ## Features Included
 
