@@ -200,7 +200,7 @@ export class GitOperations {
 		const output = await this.git.raw(args);
 		const lines = output
 			.split("\n")
-			.map((line) => line.replace("*", "").trim());
+			.map((line) => line.replace(/\*/g, "").trim());
 		const filtered = lines
 			.filter(Boolean)
 			.filter((name) => !name.includes(" -> "))
