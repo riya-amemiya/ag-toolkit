@@ -6,11 +6,18 @@ import { formatConfigValue } from "../lib/format.js";
 import { isDeepEqual } from "../lib/isDeepEqual.js";
 import { BooleanItem, Item } from "./ConfigEditorItem.js";
 
-export type ConfigItem<T> = {
-	key: keyof T;
-	type: "string" | "number" | "boolean" | "array" | "select";
-	options?: string[];
-};
+export type ConfigItem<T> =
+	| {
+			key: keyof T;
+			type: "string" | "number" | "boolean" | "array";
+			options?: never;
+	  }
+	| {
+			key: keyof T;
+			type: "select";
+			options?: string[];
+			description?: string;
+	  };
 
 type ConfigEditorProps<T extends Record<string, unknown>> = {
 	toolName: string;
