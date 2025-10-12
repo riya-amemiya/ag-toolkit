@@ -1,13 +1,13 @@
 import { describe, expect, test } from "bun:test";
-import { ArgParser } from "../lib/arg-parser.js";
+import { ArgParser, defineSchema } from "../lib/arg-parser.js";
 
 describe("ArgParser", () => {
-	const schema = {
+	const schema = defineSchema({
 		verbose: { type: "boolean" as const, shortFlag: "v" },
 		output: { type: "string" as const, shortFlag: "o" },
 		force: { type: "boolean" as const },
 		configFile: { type: "string" as const },
-	};
+	});
 
 	describe("help and version flags", () => {
 		test("should return help message when -h is passed", () => {
@@ -99,6 +99,134 @@ describe("ArgParser", () => {
 			const result = parser.parse([]);
 			expect(result.flags.verbose).toBeUndefined();
 			expect(result.flags.force).toBeUndefined();
+		});
+	});
+
+	describe("enum flags", () => {
+		const schemaWithEnum = defineSchema({
+			logLevel: {
+				type: "enum",
+				enumValues: ["debug", "info", "warn", "error"],
+				shortFlag: "l",
+			},
+			environment: {
+				type: "enum",
+				enumValues: ["development", "staging", "production"],
+			},
+		});
+
+		test("should parse long enum flags with space", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["--log-level", "info"]);
+			expect(result.flags.logLevel).toBe("info");
+		});
+
+		test("should parse long enum flags with equals", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["--log-level=error"]);
+			expect(result.flags.logLevel).toBe("error");
+		});
+
+		test("should parse short enum flags", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["-l", "debug"]);
+			expect(result.flags.logLevel).toBe("debug");
+		});
+
+		test("should parse short enum flags with equals", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["-l=warn"]);
+			expect(result.flags.logLevel).toBe("warn");
+		});
+
+		test("should handle camelCase to kebab-case for enum flags", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["--log-level", "info"]);
+			expect(result.flags.logLevel).toBe("info");
+		});
+
+		test("should throw error when enum flag has invalid value", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			expect(() => parser.parse(["--log-level", "invalid"])).toThrow(
+				"Flag --logLevel must be one of: debug, info, warn, error",
+			);
+		});
+
+		test("should throw error when enum flag has no value", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			expect(() => parser.parse(["--log-level"])).toThrow(
+				"Flag --logLevel requires a value",
+			);
+		});
+
+		test("should parse multiple enum flags", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse([
+				"--log-level",
+				"debug",
+				"--environment",
+				"production",
+			]);
+			expect(result.flags.logLevel).toBe("debug");
+			expect(result.flags.environment).toBe("production");
+		});
+
+		test("should leave undefined enum flags as undefined", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse([]);
+			expect(result.flags.logLevel).toBeUndefined();
+			expect(result.flags.environment).toBeUndefined();
+		});
+
+		test("should handle multiple occurrences of same enum flag (last wins)", () => {
+			const parser = new ArgParser({
+				schema: schemaWithEnum,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse([
+				"--log-level",
+				"debug",
+				"--log-level",
+				"error",
+			]);
+			expect(result.flags.logLevel).toBe("error");
 		});
 	});
 
@@ -198,9 +326,9 @@ describe("ArgParser", () => {
 		});
 
 		test("should collect everything after -- as input", () => {
-			const schemaWithoutConflicts = {
-				force: { type: "boolean" as const },
-			};
+			const schemaWithoutConflicts = defineSchema({
+				force: { type: "boolean" },
+			});
 			const parser = new ArgParser({
 				schema: schemaWithoutConflicts,
 				helpMessage: "",
