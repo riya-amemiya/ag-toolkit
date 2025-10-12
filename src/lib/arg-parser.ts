@@ -1,14 +1,31 @@
-interface FlagConfig {
-	type: "string" | "boolean";
-	shortFlag?: string;
-}
+type FlagConfig =
+	| {
+			type: "string" | "boolean";
+			shortFlag?: string;
+			enumValues?: never;
+	  }
+	| {
+			type: "enum";
+			shortFlag?: string;
+			enumValues?: readonly string[];
+	  };
 
-type FlagsSchema = { [key: string]: FlagConfig };
+export type FlagsSchema = Record<string, FlagConfig>;
+
+export const defineSchema = <T extends FlagsSchema>(schema: T): T => {
+	return schema;
+};
 
 type Flags<T extends FlagsSchema> = {
 	[K in keyof T]: T[K]["type"] extends "string"
 		? string | undefined
-		: boolean | undefined;
+		: T[K]["type"] extends "boolean"
+			? boolean | undefined
+			: T[K]["type"] extends "enum"
+				? T[K]["enumValues"] extends readonly (infer U)[]
+					? U | undefined
+					: string | undefined
+				: never;
 };
 
 interface ParsedArgs<T extends FlagsSchema> {
@@ -100,6 +117,20 @@ export class ArgParser<T extends FlagsSchema> {
 						const value = argValue ?? remainingArgs.shift();
 						if (value === undefined) {
 							throw new Error(`Flag --${String(longFlag)} requires a value.`);
+						}
+						flags[longFlag] = value as Flags<T>[keyof T];
+					} else if (flagConfig?.type === "enum") {
+						const value = argValue ?? remainingArgs.shift();
+						if (value === undefined) {
+							throw new Error(`Flag --${String(longFlag)} requires a value.`);
+						}
+						if (
+							flagConfig.enumValues &&
+							!flagConfig.enumValues.includes(value)
+						) {
+							throw new Error(
+								`Flag --${String(longFlag)} must be one of: ${flagConfig.enumValues.join(", ")}`,
+							);
 						}
 						flags[longFlag] = value as Flags<T>[keyof T];
 					}
