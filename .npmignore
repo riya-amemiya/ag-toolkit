@@ -1,5 +1,6 @@
 # Source code (only publish built files)
 src/
+dist/tests/
 *.ts
 !dist/**/*.d.ts
 
