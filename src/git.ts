@@ -44,7 +44,7 @@ export class GitOperations {
 	}
 
 	async fetchAll(): Promise<void> {
-		await this.git.fetch(["--all"]);
+		await this.git.fetch(["--all", "--prune"]);
 	}
 
 	async getBranchInfos(
