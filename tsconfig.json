@@ -5,7 +5,9 @@
 		"esModuleInterop": true,
 		"outDir": "dist",
 		"jsx": "react-jsx",
-		"rootDir": "./src"
+		"rootDir": "./src",
+		"types": ["bun"]
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["src/tests"]
 }
