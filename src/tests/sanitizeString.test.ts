@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { sanitizeString } from "../lib/sanitizeString.js";
+import { sanitizeString } from "../lib/sanitizeString";
 
 describe("sanitizeString", () => {
 	test("should return unchanged string for printable ASCII characters", () => {

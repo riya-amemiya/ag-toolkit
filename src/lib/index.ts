@@ -3,7 +3,6 @@ export * from "./cli.js";
 export * from "./config.js";
 export * from "./format.js";
 export * from "./index.js";
-export * from "./isDeepEqual.js";
 export * from "./isValidBranchName.js";
 export * from "./match.js";
 export * from "./package.js";

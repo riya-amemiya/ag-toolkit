@@ -1,6 +1,6 @@
 {
 	"name": "ag-toolkit",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "Shared library for agbd and agrb",
 	"license": "MIT",
 	"type": "module",
@@ -33,7 +33,8 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"simple-git": "3.36.0"
+		"simple-git": "3.36.0",
+		"umt": "3.1.0"
 	},
 	"peerDependencies": {
 		"ink": ">=6.0.0",

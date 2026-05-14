@@ -2,8 +2,8 @@ import { Box, Text, useApp, useInput } from "ink";
 import SelectInput from "ink-select-input";
 import Spinner from "ink-spinner";
 import { useEffect, useMemo, useState } from "react";
+import { isDeepEqual } from "umt/Validate";
 import { formatConfigValue } from "../lib/format.js";
-import { isDeepEqual } from "../lib/isDeepEqual.js";
 import { BooleanItem, Item } from "./ConfigEditorItem.js";
 
 export type ConfigItem<T> = {
