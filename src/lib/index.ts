@@ -6,3 +6,4 @@ export * from "./index.js";
 export * from "./isValidBranchName.js";
 export * from "./match.js";
 export * from "./package.js";
+export * from "./sanitizeString.js";
