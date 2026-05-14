@@ -1,20 +1,32 @@
 import { type SimpleGit, type SimpleGitOptions, simpleGit } from "simple-git";
+import {
+	boolean,
+	date,
+	nullable,
+	number,
+	object,
+	oneOf,
+	optional,
+	type SchemaToInterface,
+	string,
+} from "umt/Validate";
 import { isValidBranchName } from "./lib/isValidBranchName.js";
+export const BranchTypeSchema = oneOf(["local", "remote"]);
+export type BranchType = SchemaToInterface<typeof BranchTypeSchema>;
 
-export type BranchType = "local" | "remote";
-
-export interface BranchInfo {
-	ref: string;
-	name: string;
-	type: BranchType;
-	remote?: string;
-	lastCommitDate: Date | null;
-	lastCommitSha: string | null;
-	lastCommitSubject: string | null;
-	isMerged: boolean;
-	ahead: number;
-	behind: number;
-}
+const BranchInfoSchema = object({
+	ref: string(),
+	name: string(),
+	type: BranchTypeSchema,
+	remote: optional(string()),
+	lastCommitDate: nullable(date()),
+	lastCommitSha: nullable(string()),
+	lastCommitSubject: nullable(string()),
+	isMerged: boolean(),
+	ahead: number(),
+	behind: number(),
+});
+export type BranchInfo = SchemaToInterface<typeof BranchInfoSchema>;
 
 const BRANCH_LIST_FORMAT =
 	"%(refname)%00%(committerdate:iso8601)%00%(objectname)%00%(contents:subject)";
