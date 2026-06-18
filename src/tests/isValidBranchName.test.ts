@@ -87,6 +87,12 @@ describe("isValidBranchName", () => {
 			expect(isValidBranchName("feature/branch.lock")).toBe(false);
 			expect(isValidBranchName("test.lock")).toBe(false);
 		});
+
+		test("should return false for names starting with a dash", () => {
+			expect(isValidBranchName("-feature")).toBe(false);
+			expect(isValidBranchName("-D")).toBe(false);
+			expect(isValidBranchName("--force")).toBe(false);
+		});
 	});
 
 	describe("edge cases", () => {

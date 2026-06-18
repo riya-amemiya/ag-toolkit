@@ -7,6 +7,10 @@ export function isValidBranchName(branchName: string): boolean {
 		return false;
 	}
 
+	if (branchName.startsWith("-")) {
+		return false;
+	}
+
 	if (branchName.includes("..")) {
 		return false;
 	}
