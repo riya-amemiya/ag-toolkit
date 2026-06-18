@@ -271,6 +271,26 @@ describe("ArgParser", () => {
 			expect(result.flags.output).toBe("file.txt");
 		});
 
+		test("should preserve '=' characters inside the value", () => {
+			const parser = new ArgParser({
+				schema,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["--output=a=b=c"]);
+			expect(result.flags.output).toBe("a=b=c");
+		});
+
+		test("should preserve query strings and base64 in the value", () => {
+			const parser = new ArgParser({
+				schema,
+				helpMessage: "",
+				version: "",
+			});
+			const result = parser.parse(["--output=https://example.com/?a=1&b=2"]);
+			expect(result.flags.output).toBe("https://example.com/?a=1&b=2");
+		});
+
 		test("should handle camelCase to kebab-case for string flags", () => {
 			const parser = new ArgParser({
 				schema,

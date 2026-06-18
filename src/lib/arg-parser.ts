@@ -99,11 +99,9 @@ export class ArgParser<T extends FlagsSchema> {
 				let argName = arg;
 				let argValue: string | undefined;
 				if (arg.includes("=")) {
-					const parts = arg.split("=");
-					if (parts[0] !== undefined) {
-						argName = parts[0];
-					}
-					argValue = parts[1];
+					const eqIndex = arg.indexOf("=");
+					argName = arg.slice(0, eqIndex);
+					argValue = arg.slice(eqIndex + 1);
 				}
 
 				const longFlagArg = this.aliases[argName] ?? argName;

@@ -212,11 +212,10 @@ export class GitOperations {
 		const output = await this.git.raw(args);
 		const lines = output
 			.split("\n")
-			.map((line) => line.replace(/\*/g, "").trim());
+			.map((line) => line.replace(/^[*+]?\s*/, "").trim());
 		const filtered = lines
 			.filter(Boolean)
-			.filter((name) => !name.includes(" -> "))
-			.map((name) => (type === "remote" ? name : name));
+			.filter((name) => !name.includes(" -> "));
 		return new Set(filtered);
 	}
 
@@ -226,7 +225,7 @@ export class GitOperations {
 	): Promise<Array<Omit<BranchInfo, "isMerged" | "ahead" | "behind">>> {
 		const output = await this.git.raw([
 			"for-each-ref",
-			`--format=${BRANCH_LIST_FORMAT.replace("%(refname:short)", "%(refname)")}`,
+			`--format=${BRANCH_LIST_FORMAT}`,
 			refPrefix,
 		]);
 

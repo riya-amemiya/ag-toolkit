@@ -54,7 +54,7 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 			const loadedConfig = await loadConfig();
 			const fullConfig = { ...defaultConfig, ...loadedConfig };
 			setConfig(fullConfig);
-			setInitialConfig(JSON.parse(JSON.stringify(fullConfig)) as T);
+			setInitialConfig(structuredClone(fullConfig));
 			setStatus("selecting");
 		})();
 	}, [loadConfig, defaultConfig]);
@@ -88,12 +88,16 @@ export const ConfigEditor = <T extends Record<string, unknown>>({
 		{ isActive: status === "selecting" },
 	);
 
-	const items = config
-		? configItems.map((item) => ({
-				label: `${String(item.key)}: ${formatConfigValue(config[item.key])}`,
-				value: item.key,
-			}))
-		: [];
+	const items = useMemo(
+		() =>
+			config
+				? configItems.map((item) => ({
+						label: `${String(item.key)}: ${formatConfigValue(config[item.key])}`,
+						value: item.key,
+					}))
+				: [],
+		[config, configItems],
+	);
 
 	const handleSelect = (selected: { value: keyof T }) => {
 		const item = configItems.find((i) => i.key === selected.value);
