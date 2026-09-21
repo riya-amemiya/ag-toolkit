@@ -43,7 +43,7 @@
 		"react": ">=18.0.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.13",
+		"@biomejs/biome": "2.5.14",
 		"@sindresorhus/tsconfig": "8.1.0",
 		"@types/bun": "1.4.2",
 		"@types/react": "19.3.0",
