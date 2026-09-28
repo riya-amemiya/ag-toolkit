@@ -33,7 +33,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"simple-git": "3.36.0",
+		"simple-git": "4.0.1",
 		"umt": "5.0.0"
 	},
 	"peerDependencies": {
