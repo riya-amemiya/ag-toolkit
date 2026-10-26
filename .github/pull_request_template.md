@@ -7,7 +7,6 @@ Brief description of the changes in this PR.
 ## Type of Change
 
 Please delete options that are not relevant.
-
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
@@ -25,7 +24,6 @@ Please delete options that are not relevant.
 ## Testing
 
 Describe the tests that you ran to verify your changes. Provide instructions so others can reproduce.
-
 - [ ] I have tested this manually
 - [ ] I have added/updated tests where appropriate
 - [ ] All existing tests pass

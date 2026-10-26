@@ -7,14 +7,12 @@ We pledge to make participation in our community a welcoming experience for ever
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment:
-
 - Being respectful of differing viewpoints and experiences
 - Gracefully accepting constructive criticism
 - Focusing on what is best for the community
 - Showing empathy towards other community members
 
 Examples of unacceptable behavior:
-
 - Use of inappropriate language or imagery
 - Personal attacks or insulting comments
 - Publishing others' private information without permission

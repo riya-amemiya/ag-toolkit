@@ -6,15 +6,14 @@ This section will be updated as new versions of `aglib` are released.
 
 | Version | Supported |
 | ------- | --------- |
-| 0.4.x | ✅ Yes |
-| 0.3.x | ❌ No |
-| 0.2.x | ❌ No |
-| 0.1.x | ❌ No |
+| 0.4.x   | ✅ Yes    |
+| 0.3.x   | ❌ No     |
+| 0.2.x   | ❌ No     |
+| 0.1.x   | ❌ No     |
 
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability within `aglib`, please report it responsibly:
-
 1. **Do not** open a public issue for security vulnerabilities.
 2. Send an email to: <oss-contact+aglib@tokidux.com>
 3. Provide a detailed description of the vulnerability.
@@ -30,7 +29,6 @@ If you discover a security vulnerability within `aglib`, please report it respon
 ## Security Considerations
 
 When using `aglib`, please be aware that:
-
 - This library provides components and utilities for Git operations.
 - Ensure you understand the functionality you are importing and using.
 - Use in trusted environments.
