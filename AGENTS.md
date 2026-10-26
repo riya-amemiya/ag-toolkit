@@ -7,7 +7,6 @@ This project provides command-line interface (CLI) tools for Git: `agbd` (auto g
 ### agbd (auto git branch delete)
 
 `agbd` helps you review and delete Git branches confidently:
-
 1. **Interactive pruning**: Select local or remote branches from an Ink-powered UI, see last-commit metadata, and confirm deletions.
 2. **Automated cleanup**: Use filters (pattern, age, protection rules) and non-interactive mode to prune branches in bulk.
 
@@ -16,7 +15,6 @@ The tool is designed to be transparent and configurable, letting you dry-run pla
 ### agrb (auto git rebase)
 
 `agrb` simplifies the rebase process by offering two different strategies:
-
 1. **Cherry-pick based replay**: This is the default strategy. It identifies the non-merge commits between the current branch and the target branch and applies them one by one to a temporary branch created from the target. This method avoids issues with merge commits in the history.
 2. **Linear history via `git rebase`**: This strategy uses the standard `git rebase` command to create a linear history.
 
