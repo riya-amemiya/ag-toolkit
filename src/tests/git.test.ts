@@ -70,9 +70,20 @@ const commitFile = (
 	return runGit(cwd, ["rev-parse", "HEAD"]);
 };
 
+const configureIdentity = (cwd: string) => {
+	runGit(cwd, ["config", "user.name", "Test"]);
+	runGit(cwd, ["config", "user.email", "test@example.com"]);
+};
+
+const initRepo = (prefix: string, branch: string): string => {
+	const dir = makeTempDir(prefix);
+	runGit(dir, ["init", "-q", "-b", branch]);
+	configureIdentity(dir);
+	return dir;
+};
+
 const createRepo = (): string => {
-	const dir = makeTempDir("repo-");
-	runGit(dir, ["init", "-q", "-b", "main"]);
+	const dir = initRepo("repo-", "main");
 	commitFile(dir, "README.md", "initial\n", "initial commit");
 	return dir;
 };
@@ -85,7 +96,9 @@ const createRepoWithOrigin = (): { origin: string; clone: string } => {
 	runGit(seed, ["push", "-q", "origin", "main"]);
 	const parent = makeTempDir("clone-");
 	runGit(parent, ["clone", "-q", origin, "work"]);
-	return { origin, clone: join(parent, "work") };
+	const clone = join(parent, "work");
+	configureIdentity(clone);
+	return { origin, clone };
 };
 
 beforeAll(() => {
@@ -216,8 +229,7 @@ describe("GitOperations", () => {
 		});
 
 		test("returns zero ahead/behind when no base branch exists", async () => {
-			const repo = makeTempDir("nobase-");
-			runGit(repo, ["init", "-q", "-b", "trunk"]);
+			const repo = initRepo("nobase-", "trunk");
 			commitFile(repo, "a.txt", "a\n", "a");
 			const git = new GitOperations(repo);
 
