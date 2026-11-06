@@ -126,10 +126,12 @@ describe("config", () => {
 		});
 
 		test("should throw error when write fails", async () => {
-			const invalidPath = "/invalid/path/that/cannot/be/created/config.json";
+			const blockingFile = join(testDir, "not-a-directory");
+			await fs.writeFile(blockingFile, "");
+			const invalidPath = join(blockingFile, "nested", "config.json");
 			const config = { key: "value" };
 
-			expect(writeConfig(invalidPath, config)).rejects.toThrow(
+			await expect(writeConfig(invalidPath, config)).rejects.toThrow(
 				"Failed to write config file",
 			);
 		});

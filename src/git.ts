@@ -321,18 +321,12 @@ export class GitOperations {
 			await this.git.raw([
 				"show-ref",
 				"--verify",
-				"--quiet",
 				`refs/remotes/origin/${branch}`,
 			]);
 			return true;
 		} catch {
 			try {
-				await this.git.raw([
-					"show-ref",
-					"--verify",
-					"--quiet",
-					`refs/heads/${branch}`,
-				]);
+				await this.git.raw(["show-ref", "--verify", `refs/heads/${branch}`]);
 				return true;
 			} catch {
 				return false;
@@ -345,7 +339,6 @@ export class GitOperations {
 			await this.git.raw([
 				"show-ref",
 				"--verify",
-				"--quiet",
 				`refs/remotes/origin/${branch}`,
 			]);
 			return `origin/${branch}`;
