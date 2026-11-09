@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"simple-git": "4.0.2",
-		"umt": "5.1.0"
+		"umt": "5.1.1"
 	},
 	"peerDependencies": {
 		"ink": ">=6.0.0",
@@ -43,7 +43,7 @@
 		"react": ">=18.0.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.4",
+		"@biomejs/biome": "2.6.6",
 		"@sindresorhus/tsconfig": "9.0.0",
 		"@types/bun": "1.4.4",
 		"@types/react": "19.3.0",
