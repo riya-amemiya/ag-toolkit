@@ -17,6 +17,7 @@ We currently support the following versions of `ag-toolkit` with security update
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability within `ag-toolkit`, please report it responsibly:
+
 1. **Do not** open a public issue for security vulnerabilities.
 2. Send an email to: <oss-contact+aglib@tokidux.com>
 3. Provide a detailed description of the vulnerability.
@@ -32,6 +33,7 @@ If you discover a security vulnerability within `ag-toolkit`, please report it r
 ## Security Considerations
 
 When using `ag-toolkit`, please be aware that:
+
 - This library provides components and utilities for Git operations.
 - `GitOperations` validates branch names with `isValidBranchName` before deleting, looking up, cherry-picking onto, or rebasing onto a branch, so names such as `-D` or `--all` are rejected instead of being passed to Git as options.
 - Ensure you understand the functionality you are importing and using.
