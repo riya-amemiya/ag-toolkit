@@ -6,7 +6,8 @@ dist/tests/
 
 # Configuration files
 tsconfig.json
-biome.json
+.oxlintrc.json
+.oxfmtrc.json
 .eslintrc*
 .prettierrc*
 

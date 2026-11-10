@@ -85,8 +85,8 @@ export const loadConfig = async <T extends Config>(
 
 	const config = {
 		...defaultConfig,
-		...(globalConfig || {}),
-		...(localConfig || {}),
+		...globalConfig,
+		...localConfig,
 	} as T;
 
 	const sources: ConfigResult<T>["sources"] = {};
