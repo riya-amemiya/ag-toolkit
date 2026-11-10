@@ -59,7 +59,6 @@ export const handleConfigCommand = async <T extends Config>(
 			break;
 		}
 		case "edit": {
-			// biome-ignore lint/complexity/useLiteralKeys: ProcessEnv requires bracket access
 			const editor = process.env["EDITOR"] || "vim";
 			const { spawn } = await import("node:child_process");
 			const child = spawn(editor, [getGlobalConfigPath()], {

@@ -35,7 +35,6 @@ describe("loadPackageJson", () => {
 
 		expect(result.name).toBe("test-package");
 		expect(result.version).toBe("1.0.0");
-		// biome-ignore lint/complexity/useLiteralKeys: ignore
 		expect(result["description"]).toBe("Test package");
 	});
 
@@ -58,9 +57,7 @@ describe("loadPackageJson", () => {
 
 		expect(result.name).toBe("test-package");
 		expect(result.version).toBe("2.0.0");
-		// biome-ignore lint/complexity/useLiteralKeys: ignore
 		expect(result["author"]).toBe("Test Author");
-		// biome-ignore lint/complexity/useLiteralKeys: ignore
 		expect(result["license"]).toBe("MIT");
 	});
 
