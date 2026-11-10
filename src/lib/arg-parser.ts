@@ -42,11 +42,7 @@ export class ArgParser<T extends FlagsSchema> {
 	private readonly aliases: { [key: string]: string } = {};
 	private readonly longFlagMap: { [key: string]: keyof T } = {};
 
-	constructor(config: {
-		schema: T;
-		helpMessage: string;
-		version: string;
-	}) {
+	constructor(config: { schema: T; helpMessage: string; version: string }) {
 		this.schema = config.schema;
 		this.helpMessage = config.helpMessage;
 		this.version = config.version;

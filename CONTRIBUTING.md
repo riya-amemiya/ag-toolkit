@@ -67,7 +67,7 @@ bun run lint
 
 ### Code Style
 
-- We use Biome for code formatting and linting.
+- We use oxfmt for code formatting and oxlint for linting.
 - Use TypeScript for all new code.
 - Follow the existing code style and patterns.
 

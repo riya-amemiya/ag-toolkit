@@ -58,6 +58,6 @@ bun run test
 
 ## Development Conventions
 
-**Code Style**: The project uses Biome for code formatting and linting. The configuration can be found in the `biome.json` file.
-**Testing**: The project uses Biome for static checks. Add automated tests where possible.
+**Code Style**: The project uses oxfmt for code formatting and oxlint for linting. The configuration can be found in the `.oxfmtrc.json` and `.oxlintrc.json` files.
+**Testing**: The project uses oxlint and oxfmt for static checks. Add automated tests where possible.
 **Contribution**: Contribution guidelines are available in `CONTRIBUTING.md`.
